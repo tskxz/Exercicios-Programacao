@@ -1,0 +1,486 @@
+USE [Eleicoes]
+GO
+
+/****** Object:  Table [dbo].[partido]    Script Date: 02/12/2022 17:57:48 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[partido]') AND type in (N'U'))
+DROP TABLE [dbo].[partido]
+GO
+/****** Object:  Table [dbo].[municipio]    Script Date: 02/12/2022 17:57:48 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[municipio]') AND type in (N'U'))
+DROP TABLE [dbo].[municipio]
+GO
+/****** Object:  Table [dbo].[eleitor]    Script Date: 02/12/2022 17:57:48 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[eleitor]') AND type in (N'U'))
+DROP TABLE [dbo].[eleitor]
+GO
+/****** Object:  Table [dbo].[candidato]    Script Date: 02/12/2022 17:57:48 ******/
+IF  EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[candidato]') AND type in (N'U'))
+DROP TABLE [dbo].[candidato]
+GO
+
+USE [Eleicoes]
+GO
+/****** Object:  Table [dbo].[candidato]    Script Date: 02/12/2022 17:57:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[candidato](
+	[id] [int] IDENTITY(1,1) NOT NULL,
+	[nome] [nvarchar](255) NOT NULL,
+	[idade] [int] NOT NULL,
+	[genero] [nvarchar](1) NOT NULL,
+	[cod] [nvarchar](3) NOT NULL,
+	[votos] [int] NOT NULL,
+	[acronimo] [nvarchar](10) NOT NULL,
+ CONSTRAINT [PK_candidato] PRIMARY KEY CLUSTERED 
+(
+	[id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[eleitor]    Script Date: 02/12/2022 17:57:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[eleitor](
+	[en] [int] IDENTITY(1,1) NOT NULL,
+	[nome] [nvarchar](255) NOT NULL,
+	[idade] [int] NOT NULL,
+	[genero] [nvarchar](1) NOT NULL,
+	[cod] [nvarchar](3) NOT NULL,
+	[votou] [bit] NOT NULL,
+ CONSTRAINT [PK_eleitor] PRIMARY KEY CLUSTERED 
+(
+	[en] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[municipio]    Script Date: 02/12/2022 17:57:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[municipio](
+	[cod] [nvarchar](3) NOT NULL,
+	[designacao] [nvarchar](255) NULL,
+	[branco] [int] NULL,
+	[nulo] [int] NULL,
+ CONSTRAINT [PK_municipio] PRIMARY KEY CLUSTERED 
+(
+	[cod] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[partido]    Script Date: 02/12/2022 17:57:48 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[partido](
+	[acronimo] [nvarchar](10) NOT NULL,
+	[nome] [nvarchar](255) NULL,
+ CONSTRAINT [PK_partido] PRIMARY KEY CLUSTERED 
+(
+	[acronimo] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+SET IDENTITY_INSERT [dbo].[candidato] ON 
+
+INSERT [dbo].[candidato] ([id], [nome], [idade], [genero], [cod], [votos], [acronimo]) VALUES (2, N'António Sousa', 35, N'M', N'LSB', 0, N'PE')
+INSERT [dbo].[candidato] ([id], [nome], [idade], [genero], [cod], [votos], [acronimo]) VALUES (3, N'Joaquim Manuel', 40, N'M', N'PRT', 2, N'PE')
+INSERT [dbo].[candidato] ([id], [nome], [idade], [genero], [cod], [votos], [acronimo]) VALUES (4, N'Manuela Silva', 45, N'F', N'LSB', 3, N'PE')
+INSERT [dbo].[candidato] ([id], [nome], [idade], [genero], [cod], [votos], [acronimo]) VALUES (5, N'André Teixeira', 50, N'M', N'CBR', 3, N'PC')
+INSERT [dbo].[candidato] ([id], [nome], [idade], [genero], [cod], [votos], [acronimo]) VALUES (6, N'Maria Domingues', 51, N'F', N'CBR', 2, N'PC')
+INSERT [dbo].[candidato] ([id], [nome], [idade], [genero], [cod], [votos], [acronimo]) VALUES (7, N'Maria Pinto', 63, N'F', N'PRT', 1, N'PC')
+INSERT [dbo].[candidato] ([id], [nome], [idade], [genero], [cod], [votos], [acronimo]) VALUES (8, N'José Topa', 31, N'M', N'PRT', 6, N'PD')
+INSERT [dbo].[candidato] ([id], [nome], [idade], [genero], [cod], [votos], [acronimo]) VALUES (9, N'José Gonçalves', 42, N'M', N'LSB', 1, N'PD')
+INSERT [dbo].[candidato] ([id], [nome], [idade], [genero], [cod], [votos], [acronimo]) VALUES (10, N'António Oliveira', 50, N'M', N'LSB', 0, N'PD')
+SET IDENTITY_INSERT [dbo].[candidato] OFF
+GO
+SET IDENTITY_INSERT [dbo].[eleitor] ON 
+
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (1, N'Manuel Joaquim', 66, N'M', N'LSB', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (2, N'António Joaquim', 23, N'M', N'LSB', 0)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (3, N'Manuel António', 44, N'M', N'LSB', 0)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (4, N'António Manuel', 77, N'M', N'LSB', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (5, N'Joaquim Manuel', 30, N'M', N'LSB', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (6, N'Manuel Joaquim', 67, N'M', N'PRT', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (7, N'António Joaquim', 22, N'M', N'PRT', 0)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (8, N'Manuel António', 45, N'M', N'PRT', 0)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (9, N'António Manuel', 78, N'M', N'PRT', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (10, N'Joaquim Manuel', 31, N'M', N'PRT', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (11, N'Manuel Joaquim', 68, N'M', N'CBR', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (12, N'António Joaquim', 24, N'M', N'CBR', 0)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (13, N'Manuel António', 46, N'M', N'CBR', 0)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (14, N'António Manuel', 79, N'M', N'CBR', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (15, N'Joaquim Manuel', 32, N'M', N'CBR', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (16, N'Maria José', 66, N'F', N'LSB', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (17, N'Ana Duarte', 23, N'F', N'LSB', 0)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (18, N'Mariana Sousa', 44, N'F', N'LSB', 0)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (19, N'Dora Oliveira', 77, N'F', N'LSB', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (20, N'Maria Teixeira', 30, N'F', N'LSB', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (21, N'Maria José', 56, N'F', N'PRT', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (22, N'Ana Duarte', 33, N'F', N'PRT', 0)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (23, N'Mariana Sousa', 54, N'F', N'PRT', 0)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (24, N'Dora Oliveira', 67, N'F', N'PRT', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (25, N'Maria Teixeira', 40, N'F', N'PRT', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (26, N'Maria José', 57, N'F', N'CBR', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (27, N'Ana Duarte', 32, N'F', N'CBR', 0)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (28, N'Mariana Sousa', 53, N'F', N'CBR', 0)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (29, N'Dora Oliveira', 66, N'F', N'CBR', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (30, N'Maria Teixeira', 47, N'F', N'CBR', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (31, N'Maria José', 21, N'F', N'CBR', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (32, N'Ana Duarte', 21, N'F', N'CBR', 0)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (33, N'Mariana Sousa', 18, N'F', N'CBR', 0)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (34, N'Dora Oliveira', 19, N'F', N'CBR', 1)
+INSERT [dbo].[eleitor] ([en], [nome], [idade], [genero], [cod], [votou]) VALUES (35, N'Maria Teixeira', 20, N'F', N'CBR', 1)
+SET IDENTITY_INSERT [dbo].[eleitor] OFF
+GO
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ABF', N'Albufeira', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ABT', N'Abrantes', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ACB', N'Alcobaça', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ACH', N'Alcochete', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ACN', N'Alcanena', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ACT', N'Alcoutim', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ADL', N'Alandroal', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ADV', N'Almodôvar', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'AFE', N'Alfândega da Fé', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'AGB', N'Aguiar da Beira', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'AGD', N'Águeda', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'AGH', N'Angra do Heroísmo', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'AGN', N'Arganil', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'AJT', N'Aljustrel', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'AJZ', N'Aljezur', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ALB', N'Albergaria-a-Velha', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ALD', N'Almeida', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ALJ', N'Alijó', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ALM', N'Almada', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ALQ', N'Alenquer', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ALR', N'Almeirim', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ALT', N'Alter do Chão', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'AMD', N'Amadora', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'AMM', N'Armamar', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'AMR', N'Amares', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'AMT', N'Amarante', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'AND', N'Anadia', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ANS', N'Ansião', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'APC', N'Alpiarça', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ARC', N'Arouca', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ARL', N'Arraiolos', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ARR', N'Arronches', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ARV', N'Arruda dos Vinhos', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ASL', N'Alcácer do Sal', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'AVR', N'Aveiro', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'AVS', N'Avis', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'AVT', N'Alvito', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'AVV', N'Arcos de Valdevez', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'AVZ', N'Alvaiázere', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'AZB', N'Azambuja', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'BAO', N'Baião', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'BBR', N'Bombarral', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'BCL', N'Barcelos', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'BGC', N'Bragança', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'BJA', N'Beja', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'BMT', N'Belmonte', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'BNV', N'Benavente', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'BRB', N'Borba', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'BRC', N'Barrancos', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'BRG', N'Braga', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'BRR', N'Barreiro', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'BTC', N'Boticas', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'BTL', N'Batalha', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CBA', N'Cuba', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CBC', N'Cabeceiras de Basto', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CBR', N'Coimbra', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CBT', N'Celorico de Basto', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CCH', N'Coruche', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CDN', N'Condeixa-a-Nova', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CDR', N'Castro Daire', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CDV', N'Cadaval', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CHM', N'Chamusca', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CHT', N'Calheta', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CHV', N'Chaves', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CLB', N'Celorico da Beira', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CLD', N'Caldas da Rainha', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CLT', N'Calheta', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CML', N'Câmara de Lobos', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CMN', N'Caminha', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CMR', N'Campo Maior', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CNF', N'Cinfães', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CNS', N'Constância', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CNT', N'Cantanhede', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CPR', N'Castanheira de Pera', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CPV', N'Castelo de Paiva', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CRS', N'Carregal do Sal', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CRT', N'Crato', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CRV', N'Corvo', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CRZ', N'Carrazeda de Ansiães', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CSC', N'Cascais', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CTB', N'Castelo Branco', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CTM', N'Castro Marim', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CTX', N'Cartaxo', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CVD', N'Castelo de Vide', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CVL', N'Covilhã', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'CVR', N'Castro Verde', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ELV', N'Elvas', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ENT', N'Entroncamento', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'EPS', N'Esposende', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ESP', N'Espinho', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ETR', N'Estarreja', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ETZ', N'Estremoz', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'EVR', N'Évora', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'FAF', N'Fafe', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'FAG', N'Fornos de Algodres', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'FAL', N'Ferreira do Alentejo', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'FAR', N'Faro', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'FCR', N'Figueira de Castelo Rodrigo', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'FEC', N'Freixo de Espada à Cinta', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'FIG', N'Figueira da Foz', NULL, NULL)
+GO
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'FLG', N'Felgueiras', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'FNC', N'Funchal', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'FND', N'Fundão', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'FTR', N'Fronteira', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'FVN', N'Figueiró dos Vinhos', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'FZZ', N'Ferreira do Zêzere', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'GAV', N'Gavião', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'GDL', N'Grândola', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'GDM', N'Gondomar', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'GLG', N'Golegã', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'GMR', N'Guimarães', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'GOI', N'Góis', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'GRD', N'Guarda', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'GVA', N'Gouveia', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'HRT', N'Horta', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'IDN', N'Idanha-a-Nova', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ILH', N'Ílhavo', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'LAG', N'Lagoa', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'LGA', N'Lagoa', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'LGF', N'Lajes das Flores', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'LGP', N'Lajes do Pico', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'LGS', N'Lagos', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'LLE', N'Loulé', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'LMG', N'Lamego', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'LNH', N'Lourinhã', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'LOU', N'Lousada', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'LRA', N'Leiria', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'LRS', N'Loures', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'LSA', N'Lousã', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'LSB', N'Lisboa', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MAC', N'Mação', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MAD', N'Madalena', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MAI', N'Maia', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MBR', N'Moimenta da Beira', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MCD', N'Macedo de Cavaleiros', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MCH', N'Machico', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MCN', N'Marco de Canaveses', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MCQ', N'Monchique', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MCV', N'Miranda do Corvo', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MDB', N'Mondim de Basto', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MDL', N'Mirandela', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MDR', N'Miranda do Douro', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MED', N'Mêda', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MFR', N'Mafra', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MFT', N'Monforte', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MGD', N'Mogadouro', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MGL', N'Mangualde', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MGR', N'Marinha Grande', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MIR', N'Mira', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MLD', N'Mealhada', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MLG', N'Melgaço', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MMN', N'Montemor-o-Novo', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MMV', N'Montemor-o-Velho', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MNC', N'Monção', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MOR', N'Mora', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MOU', N'Mourão', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MRA', N'Moura', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MRS', N'Murtosa', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MRT', N'Mortágua', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MRV', N'Marvão', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MSF', N'Mesão Frio', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MTA', N'Moita', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MTG', N'Manteigas', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MTJ', N'Montijo', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MTL', N'Mértola', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MTR', N'Montalegre', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MTS', N'Matosinhos', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'MUR', N'Murça', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'NIS', N'Nisa', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'NLS', N'Nelas', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'NRD', N'Nordeste', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'NZR', N'Nazaré', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'OAZ', N'Oliveira de Azeméis', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'OBD', N'Óbidos', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'OBR', N'Oliveira do Bairro', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ODM', N'Odemira', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ODV', N'Odivelas', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'OER', N'Oeiras', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'OFR', N'Oliveira de Frades', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'OHP', N'Oliveira do Hospital', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'OLH', N'Olhão', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'OLR', N'Oleiros', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ORM', N'Ourém', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'ORQ', N'Ourique', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'OVR', N'Ovar', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PBL', N'Pombal', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PCR', N'Paredes de Coura', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PCT', N'Penalva do Castelo', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PCV', N'Penacova', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PDL', N'Ponta Delgada', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PFR', N'Paços de Ferreira', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PGR', N'Pedrógão Grande', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PLM', N'Palmela', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PMS', N'Porto de Mós', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PMZ', N'Porto Moniz', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PNC', N'Penamacor', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PND', N'Penedono', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PNF', N'Penafiel', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PNH', N'Pinhel', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PNI', N'Peniche', NULL, NULL)
+GO
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PNL', N'Penela', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PNV', N'Proença-a-Nova', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PPS', N'Pampilhosa da Serra', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PRD', N'Paredes', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PRG', N'Peso da Régua', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PRL', N'Portel', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PRS', N'Vila Nova de Poiares', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PRT', N'Porto', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PSR', N'Ponte de Sor', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PST', N'Porto Santo', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PTB', N'Ponte da Barca', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PTG', N'Portalegre', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PTL', N'Ponte de Lima', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PTM', N'Portimão', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PTS', N'Ponta do Sol', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PVC', N'Povoação', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PVL', N'Póvoa de Lanhoso', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'PVZ', N'Póvoa de Varzim', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'RBR', N'Ribeira Brava', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'RDD', N'Redondo', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'RGR', N'Ribeira Grande', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'RMR', N'Rio Maior', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'RMZ', N'Reguengos de Monsaraz', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'RPN', N'Ribeira de Pena', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'RSD', N'Resende', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SAT', N'Sátão', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SBA', N'São Brás de Alportel', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SBG', N'Sabugal', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SBR', N'Sabrosa', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SCD', N'Santa Comba Dão', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SCF', N'Santa Cruz das Flores', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SCG', N'Santa Cruz da Graciosa', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SCR', N'Santa Cruz', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SEI', N'Seia', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SJM', N'São João da Madeira', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SJP', N'São João da Pesqueira', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SLV', N'Silves', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SMA', N'Sobral de Monte Agraço', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SMG', N'Salvaterra de Magos', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SMP', N'Santa Marta de Penaguião', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SNS', N'Sines', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SNT', N'Sintra', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SPS', N'São Pedro do Sul', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SRD', N'Sardoal', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SRE', N'Soure', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SRN', N'Sernancelhe', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SRP', N'Serpa', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SRQ', N'São Roque do Pico', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SRT', N'Sertã', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SSB', N'Sesimbra', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SSL', N'Sousel', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'STB', N'Setúbal', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'STC', N'Santiago do Cacém', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'STN', N'Santana', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'STR', N'Santarém', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'STS', N'Santo Tirso', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SVC', N'São Vicente', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SVV', N'Sever do Vouga', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'SXL', N'Seixal', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'TBC', N'Tabuaço', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'TBR', N'Terras de Bouro', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'TBU', N'Tábua', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'TCS', N'Trancoso', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'TMC', N'Torre de Moncorvo', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'TMR', N'Tomar', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'TND', N'Tondela', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'TNV', N'Torres Novas', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'TRC', N'Tarouca', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'TRF', N'Trofa', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'TVD', N'Torres Vedras', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'TVR', N'Tavira', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VBP', N'Vila do Bispo', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VCD', N'Vila do Conde', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VCT', N'Viana do Castelo', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VDG', N'Vidigueira', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VFC', N'Vila Franca do Campo', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VFL', N'Vila Flor', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VFR', N'Santa Maria da Feira', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VFX', N'Vila Franca de Xira', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VGS', N'Vagos', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VIS', N'Viseu', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VIZ', N'Vizela', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VLC', N'Vale de Cambra', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VLF', N'Vila Nova de Foz Côa', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VLG', N'Valongo', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VLN', N'Valença', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VLP', N'Valpaços', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VLR', N'Vila de Rei', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VLS', N'Velas', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VMS', N'Vimioso', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VNB', N'Vila Nova da Barquinha', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VNC', N'Vila Nova de Cerveira', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VND', N'Vendas Novas', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VNF', N'Vila Nova de Famalicão', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VNG', N'Vila Nova de Gaia', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VNH', N'Vinhais', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VNP', N'Vila Nova de Paiva', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VNT', N'Viana do Alentejo', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VPA', N'Vila Pouca de Aguiar', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VPT', N'Vila do Porto', NULL, NULL)
+GO
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VPV', N'Praia da Vitória', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VRL', N'Vila Real', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VRM', N'Vieira do Minho', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VRS', N'Vila Real de Santo António', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VVC', N'Vila Viçosa', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VVD', N'Vila Verde', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VVR', N'Vila Velha de Ródão', NULL, NULL)
+INSERT [dbo].[municipio] ([cod], [designacao], [branco], [nulo]) VALUES (N'VZL', N'Vouzela', NULL, NULL)
+GO
+INSERT [dbo].[partido] ([acronimo], [nome]) VALUES (N'BE', N'Bloco de Esquerda')
+INSERT [dbo].[partido] ([acronimo], [nome]) VALUES (N'CDSPP', N'Centro Democrático Social - Partido Popular')
+INSERT [dbo].[partido] ([acronimo], [nome]) VALUES (N'CDU', N'Coligação Democrática Unitária')
+INSERT [dbo].[partido] ([acronimo], [nome]) VALUES (N'CH', N'Chega')
+INSERT [dbo].[partido] ([acronimo], [nome]) VALUES (N'IL', N'Iniciativa Liberal')
+INSERT [dbo].[partido] ([acronimo], [nome]) VALUES (N'L', N'Livre')
+INSERT [dbo].[partido] ([acronimo], [nome]) VALUES (N'PAN', N'Pessoas Animais Natureza')
+INSERT [dbo].[partido] ([acronimo], [nome]) VALUES (N'PC', N'Partido Centro')
+INSERT [dbo].[partido] ([acronimo], [nome]) VALUES (N'PD', N'Partido Direita')
+INSERT [dbo].[partido] ([acronimo], [nome]) VALUES (N'PE', N'Partido Esquerda')
+INSERT [dbo].[partido] ([acronimo], [nome]) VALUES (N'PEV', N'Partido Ecologista "Os Verdes"')
+INSERT [dbo].[partido] ([acronimo], [nome]) VALUES (N'PS', N'Partido Socialista')
+INSERT [dbo].[partido] ([acronimo], [nome]) VALUES (N'PSD', N'Partido Social Democrata')
+GO
+ALTER TABLE [dbo].[candidato]  WITH CHECK ADD  CONSTRAINT [FK_candidato_municipio] FOREIGN KEY([cod])
+REFERENCES [dbo].[municipio] ([cod])
+GO
+ALTER TABLE [dbo].[candidato] CHECK CONSTRAINT [FK_candidato_municipio]
+GO
+ALTER TABLE [dbo].[candidato]  WITH CHECK ADD  CONSTRAINT [FK_candidato_partido] FOREIGN KEY([acronimo])
+REFERENCES [dbo].[partido] ([acronimo])
+GO
+ALTER TABLE [dbo].[candidato] CHECK CONSTRAINT [FK_candidato_partido]
+GO
+ALTER TABLE [dbo].[eleitor]  WITH CHECK ADD  CONSTRAINT [FK_eleitor_municipio] FOREIGN KEY([cod])
+REFERENCES [dbo].[municipio] ([cod])
+GO
+ALTER TABLE [dbo].[eleitor] CHECK CONSTRAINT [FK_eleitor_municipio]
+GO
+USE [master]
+GO
+ALTER DATABASE [Eleicoes] SET  READ_WRITE 
+GO
